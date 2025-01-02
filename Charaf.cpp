@@ -33,3 +33,21 @@ public:
         return name;
     }
 };
+
+
+// Dusman sinifi
+class Enemy : public GameObject { // GameObject sınıfından türetilmiş
+private:
+    int attackPower; // Dusmanın süldürme gücü
+
+public:
+    Enemy(const string& name, int health, int attackPower)
+        : GameObject(name, health), attackPower(attackPower) { // Yapıcı fonksiyon
+    }
+
+    void attack(Player& player) { // Dusmanın oyuncuya saldırdığı fonksiyon
+        int damage = attackPower; // Hasar mıktarını belirler
+        player.takeDamage(damage); // Oyuncuya hasar uygular
+        cout << name << " saldiridi! " << player.getName() << " " << damage << " hasar aldi!" << endl; // Saldırıyı bildirir
+    }
+};
