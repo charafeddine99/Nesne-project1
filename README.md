@@ -27,14 +27,4 @@ Düşmana saldırabilir.
 Can yenilemek için iyileşebilir.
 Amaç: Haritada gizlenmiş hazineyi bulurken hayatta kalmaya çalışın.
 
-Gereksinimler
-Oyunu derlemek ve çalıştırmak için aşağıdakilere ihtiyacınız var:
 
-Bir C++ derleyicisi (örn. GCC, Clang, Visual Studio).
-Bir terminal veya komut satırı arayüzü.
-Kurulum ve Çalıştırma
-Depoyu Klonlayın:
-bash
-Kodu kopyala
-git clone https://github.com/your-username/treasure-hunter-game.git  
-cd treasure-hunter-game
