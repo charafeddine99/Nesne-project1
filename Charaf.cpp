@@ -52,3 +52,47 @@ public:
     }
 };
 
+
+// Ana oyun dongusu
+int main() {
+    srand(time(0)); // Rastgelelik için zamanı kullan
+
+    cout << "Hazine Avcisi Oyununa Hosgeldiniz!" << endl; // Oyuna karşılama mesajı
+    int mapSize = 5; // Harita boyutunu belirle
+    Map map(mapSize); // Haritayı oluştur
+
+    Player player("Oyuncu", 100, 25, 0, 0); // Oyuncu oluştur
+    Enemy enemy("Dusman", 50, 15); // Dusman oluştur
+
+    while (player.isAlive()) { // Oyuncu yaşadıkça oyun devam eder
+        cout << "\nHarita:" << endl;
+        map.display(player); // Haritayı göster
+
+        cout << "\nHareket (w: yukari, s: asagi, a: sola, d: saga): "; // Hareket seçenekleri
+        char moveDirection;
+        cin >> moveDirection; // Oyuncunun hareket yönü
+
+        player.move(moveDirection, mapSize); // Oyuncuyu hareket ettir
+
+        if (map.isTreasure(player.getX(), player.getY())) { // Oyuncu hazinenin konumundaysa
+            cout << "Tebrikler! Hazinenizi buldunuz!" << endl; // Kazandı bildirimi
+            break;
+        }
+
+        if (rand() % 3 == 0) { // Yuzde 33 olasilikla bir dusman cikar
+            cout << "\nBir dusman belirdi!" << endl;
+            battle(player, enemy); // Savaş başlat
+
+            if (enemy.isAlive()) { // Dusman yaşıyorsa yeni bir dusman yaratılır
+                enemy = Enemy("Dusman", 50, 15);
+            }
+        }
+
+        if (!player.isAlive()) { // Oyuncu öldüyse oyun biter
+            cout << "Oyun Bitti! Kaybettiniz. Tekrar deneyin!" << endl;
+            break;
+        }
+    }
+
+    return 0; // Programın başarıyla sona erdiğini bildirir
+}
